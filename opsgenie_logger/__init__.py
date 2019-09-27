@@ -18,10 +18,11 @@ class OpsGenieHandler(logging.Handler):
     priority: Critical, error and warning are P1-3.  All others are P5
     """
 
-    def __init__(self, api_key: str, team_name: str):
+    def __init__(self, api_key: str, team_name: str, level=logging.ERROR):
         """
         :param api_key:  Your OpsGenie API key, generate in team integrations.  Needs to have rights to create alerts.
         :param team_name: The name of the team in OpsGenie that should receive the alert
+        :param level: The minimum level a log event must be to be sent to OpsGenie
         """
         super().__init__()
         conf = opsgenie_sdk.configuration.Configuration()
@@ -37,9 +38,12 @@ class OpsGenieHandler(logging.Handler):
             logging.DEBUG: "P5",
             logging.NOTSET: "P5",
         }
+        self.level = level
 
     def emit(self, record: logging.LogRecord):
         """ Send a logging event to OpsGenie """
+        if record.levelno < self.level:
+            return
         body = opsgenie_sdk.CreateAlertPayload(
             message=record.getMessage(),
             alias=f"{record.pathname}:{record.funcName}:{record.lineno}",

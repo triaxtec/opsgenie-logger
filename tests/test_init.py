@@ -92,3 +92,13 @@ class TestEmit:
         kwargs = calls[0][1]
         payload = kwargs["create_alert_payload"]
         assert payload.description == "bad thing happened"
+
+    def test_level(self, mocker):
+        from logging import LogRecord
+
+        handler = OpsGenieHandler("", "", 1)
+        handler._alert_api = mocker.MagicMock()
+
+        record = LogRecord("", 0, "", 0, "", [], None)
+        handler.emit(record)
+        calls = handler._alert_api.create_alert.assert_not_called()
