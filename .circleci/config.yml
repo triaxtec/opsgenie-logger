@@ -21,8 +21,6 @@ jobs:
           command: |
             pip install poetry
             poetry config settings.virtualenvs.in-project true
-            poetry config repositories.triaxtec https://pypi.fury.io/triaxtec/
-            poetry config http-basic.triaxtec $GEMFURY_PULL_TOKEN $GEMFURY_PULL_TOKEN
             poetry install
 
       - run:
