@@ -1,11 +1,9 @@
 [tool.poetry]
 name = "opsgenie-logger"
-version = "0.1.0"
+version = "0.1.1"
 description = "Provides logging handlers for OpsGenie"
 
-authors = [
-    "Dylan Anthony <danthony@triaxtec.com>",
-]
+authors = ["Dylan Anthony <danthony@triaxtec.com>"]
 
 readme = "README.md"
 packages = [
@@ -23,15 +21,16 @@ opsgenie-sdk = "^2.0.1"
 [tool.poetry.dev-dependencies]
 pytest = "*"
 pytest-mock = "*"
-python-dotenv = "^0.10.3"
-sphinx = "^2.1"
-recommonmark = "^0.5.0"
-sphinx-rtd-theme = "^0.4.3"
-pygments-github-lexers = "^0.0.5"
-lockfile = "^0.12.2"
+python-dotenv = "==0.*,>=0.10.3"
+sphinx = "==2.*,>=2.1.0"
+recommonmark = "==0.*,>=0.5.0"
+sphinx-rtd-theme = "==0.*,>=0.4.3"
+pygments-github-lexers = "==0.*,>=0.0.5"
+lockfile = "==0.*,>=0.12.2"
 mypy = "==0.*,>=0.720.0"
-black = {version = "*",allows-prereleases = true}
+black = {allows-prereleases = true, version = "*"}
 safety = "*"
+
 
 [tool.dephell]
 versioning = "semver"
