@@ -14,11 +14,7 @@ packages = [
 classifiers = [
     "Private :: Internal Triax Use Only"  # Prevents this from being accidentally published to public PyPI
 ]
-include = ["docs/CHANGELOG.md", "opsgenie_logger /py.typed"]
-
-[[tool.poetry.source]]
-name = "triaxtec"
-url = "https://pypi.fury.io/triaxtec/"
+include = ["docs/CHANGELOG.md", "opsgenie_logger/py.typed"]
 
 [tool.poetry.dependencies]
 python = "==3.*,>=3.7.0"
