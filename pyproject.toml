@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "opsgenie-logger"
-version = "0.1.1"
+version = "0.1.2"
 description = "Provides logging handlers for OpsGenie"
 
 authors = ["Dylan Anthony <danthony@triaxtec.com>"]
@@ -30,6 +30,7 @@ lockfile = "==0.*,>=0.12.2"
 mypy = "==0.*,>=0.720.0"
 black = {allows-prereleases = true, version = "*"}
 safety = "*"
+
 
 
 [tool.dephell]

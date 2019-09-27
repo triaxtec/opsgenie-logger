@@ -1,9 +1,10 @@
 """ Provides logging handlers for OpsGenie """
 import logging
+from typing import Union
 
 import opsgenie_sdk
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 
 class OpsGenieHandler(logging.Handler):
@@ -18,13 +19,13 @@ class OpsGenieHandler(logging.Handler):
     priority: Critical, error and warning are P1-3.  All others are P5
     """
 
-    def __init__(self, api_key: str, team_name: str, level: int = logging.NOTSET):
+    def __init__(self, api_key: str, team_name: str, level: Union[int, str] = logging.NOTSET):
         """
         :param api_key:  Your OpsGenie API key, generate in team integrations.  Needs to have rights to create alerts.
         :param team_name: The name of the team in OpsGenie that should receive the alert
         :param level: The minimum level a log event must be to be sent to OpsGenie
         """
-        super().__init__()
+        super().__init__(level=level)
         conf = opsgenie_sdk.configuration.Configuration()
         conf.api_key["Authorization"] = api_key
         api_client = opsgenie_sdk.api_client.ApiClient(configuration=conf)
@@ -38,7 +39,6 @@ class OpsGenieHandler(logging.Handler):
             logging.DEBUG: "P5",
             logging.NOTSET: "P5",
         }
-        self.level = level
 
     def emit(self, record: logging.LogRecord):
         """ Send a logging event to OpsGenie """

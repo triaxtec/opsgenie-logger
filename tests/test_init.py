@@ -94,11 +94,18 @@ class TestEmit:
         assert payload.description == "bad thing happened"
 
     def test_level(self, mocker):
-        from logging import LogRecord
+        from logging import LogRecord, ERROR
 
         handler = OpsGenieHandler("", "", 1)
         handler._alert_api = mocker.MagicMock()
 
         record = LogRecord("", 0, "", 0, "", [], None)
         handler.emit(record)
-        calls = handler._alert_api.create_alert.assert_not_called()
+        handler._alert_api.create_alert.assert_not_called()
+
+        handler = OpsGenieHandler("", "", "WARNING")
+        handler._alert_api = mocker.MagicMock()
+
+        record = LogRecord("", ERROR, "", 0, "", [], None)
+        handler.emit(record)
+        handler._alert_api.create_alert.assert_called_once()
