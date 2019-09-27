@@ -1,0 +1,57 @@
+[tool.poetry]
+name = "opsgenie-logger"
+version = "0.1.0"
+description = "Provides logging handlers for OpsGenie"
+
+authors = [
+    "Dylan Anthony <danthony@triaxtec.com>",
+]
+
+readme = "README.md"
+packages = [
+    {include = "opsgenie_logger "},
+]
+classifiers = [
+    "Private :: Internal Triax Use Only"  # Prevents this from being accidentally published to public PyPI
+]
+include = ["docs/CHANGELOG.md", "opsgenie_logger /py.typed"]
+
+[[tool.poetry.source]]
+name = "triaxtec"
+url = "https://pypi.fury.io/triaxtec/"
+
+[tool.poetry.dependencies]
+python = "==3.*,>=3.7.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+pytest-mock = "*"
+python-dotenv = "^0.10.3"
+sphinx = "^2.1"
+recommonmark = "^0.5.0"
+sphinx-rtd-theme = "^0.4.3"
+pygments-github-lexers = "^0.0.5"
+lockfile = "^0.12.2"
+mypy = "==0.*,>=0.720.0"
+black = {version = "*",allows-prereleases = true}
+safety = "*"
+
+[tool.dephell]
+versioning = "semver"
+
+[tool.dephell.main]
+from = {format = "poetry", path = "pyproject.toml"}
+to = {format = "poetry", path = "poetry.lock"}
+
+[tool.black]
+line-length = 120
+target_version = ['py37']
+exclude = '''
+(
+  /(
+    | \.git
+    | \.venv
+    | \.mypy_cache
+  )/
+)
+'''
