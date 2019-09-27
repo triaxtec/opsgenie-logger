@@ -27,9 +27,9 @@ jobs:
           name: run tests
           command: |
             mkdir -p test-reports/safety test-reports/mypy test-reports/pytest
-            poetry run black --check
+            poetry run black . --check
             poetry run safety check --json > test-reports/safety/results.json
-            poetry run mypy spotr_server --junit-xml=test-reports/mypy/results.xml
+            poetry run mypy opsgenie_logger --junit-xml=test-reports/mypy/results.xml
             poetry run pytest --junitxml=test-reports/pytest/results.xml
 
       - store_test_results:
