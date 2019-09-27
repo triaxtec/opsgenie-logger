@@ -18,7 +18,7 @@ class OpsGenieHandler(logging.Handler):
     priority: Critical, error and warning are P1-3.  All others are P5
     """
 
-    def __init__(self, api_key: str, team_name: str, level: int = logging.ERROR):
+    def __init__(self, api_key: str, team_name: str, level: int = logging.NOTSET):
         """
         :param api_key:  Your OpsGenie API key, generate in team integrations.  Needs to have rights to create alerts.
         :param team_name: The name of the team in OpsGenie that should receive the alert
