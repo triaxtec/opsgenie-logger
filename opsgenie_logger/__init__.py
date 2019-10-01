@@ -4,7 +4,7 @@ from typing import Union
 
 import opsgenie_sdk
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 
 class OpsGenieHandler(logging.Handler):
@@ -47,7 +47,7 @@ class OpsGenieHandler(logging.Handler):
         body = opsgenie_sdk.CreateAlertPayload(
             message=record.getMessage(),
             alias=f"{record.pathname}:{record.funcName}:{record.lineno}",
-            description=record.exc_text,
+            description=self.format(record),
             visible_to=[{"name": self._team_name, "type": "team"}],
             priority=self._level_mapping[record.levelno],
         )
