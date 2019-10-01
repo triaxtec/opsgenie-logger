@@ -91,7 +91,7 @@ class TestEmit:
         calls = handler._alert_api.create_alert.call_args_list
         kwargs = calls[0][1]
         payload = kwargs["create_alert_payload"]
-        assert payload.description == "bad thing happened"
+        assert payload.description == "\nbad thing happened"
 
     def test_level(self, mocker):
         from logging import LogRecord, ERROR
