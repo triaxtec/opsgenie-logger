@@ -1,10 +1,12 @@
 """ Provides logging handlers for OpsGenie """
 import logging
+from traceback import extract_tb, FrameSummary
+
 from typing import Union
 
 import opsgenie_sdk
 
-__version__ = "0.1.3"
+__version__ = "0.1.4"
 
 
 class OpsGenieHandler(logging.Handler):
@@ -44,9 +46,14 @@ class OpsGenieHandler(logging.Handler):
         """ Send a logging event to OpsGenie """
         if record.levelno < self.level:
             return
+        if record.exc_info:
+            frame_summary: FrameSummary = extract_tb(record.exc_info[2], 1)[0]
+            alias = f"{frame_summary.filename}:{frame_summary.name}:{frame_summary.lineno}"
+        else:
+            alias = f"{record.pathname}:{record.funcName}:{record.lineno}"
         body = opsgenie_sdk.CreateAlertPayload(
             message=record.getMessage(),
-            alias=f"{record.pathname}:{record.funcName}:{record.lineno}",
+            alias=alias,
             description=self.format(record),
             visible_to=[{"name": self._team_name, "type": "team"}],
             priority=self._level_mapping[record.levelno],

@@ -14,8 +14,6 @@ class TestIntegration:
         handler = OpsGenieHandler(config["api_key"], config["team_name"])
         logger.addHandler(handler)
 
-        logger.error("TEST ERROR")
-
         try:
             assert True == False
         except:
