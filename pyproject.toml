@@ -4,12 +4,13 @@ version = "0.1.4"
 description = "Provides a logging handler for Atlassian OpsGenie"
 repository = "https://github.com/triaxtec/opsgenie-logger"
 authors = ["Dylan Anthony <danthony@triaxtec.com>"]
-
+license = "MIT"
 readme = "README.md"
 packages = [
     {include = "opsgenie_logger"},
 ]
 include = ["docs/CHANGELOG.md", "opsgenie_logger/py.typed"]
+keywords = ["opsgenie", "logging"]
 
 [tool.poetry.dependencies]
 python = "==3.*,>=3.7.0"
