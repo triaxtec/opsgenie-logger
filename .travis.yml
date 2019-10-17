@@ -1,0 +1,25 @@
+language: python
+cache: pip
+dist: xenial
+jobs:
+  include:
+  - name: Python 3.7 Tests
+    python: 3.7
+    script: |
+      poetry run black . --check
+      poetry run mypy opsgenie_logger
+      poetry run pytest
+before_install: |
+  pip install poetry
+  poetry config settings.virtualenvs.in-project true
+install: 'poetry install
+
+'
+deploy:
+  provider: pypi
+  edge: true
+  on:
+    branch: master
+  username: triax
+  password:
+    secure: fKg0k8LT70Ia3YJu/UYeKMLCO5hTsINcxdBU7hsKzTLw4VocAQ/NmZvRVs3wElaGt0poRrChUtPJltFqDt43TKhjcotMglukTfIwR7M5kHwQrJq+be2E87VoShnQy9UsRnh2zLNsGwqPH5KfnymTEW8GFOdKShdurTGgBPp9vcmBOcq+Ni6aU2QtneqXosYJmdP4OJa12Mk4irCMe9IyoMiro8mQw2uZ7eLn/bFBo7bm9l/HSR6q8p7Uug8d+f7JNnPYDCIAvhxiFQCVSYG/f1mRkY1Fi5qp8wS443EgwfvW4UjDCqFyck1qXkkJrukubbOOFir83YJrhMbpO0QN5bXqCtPnaJnugPEy/fRfa5R53lAboLaWrqhSOjHoEGv11eDCFzt+37IfSCupzDmvMFoxKZmF6gfqvs8gHkWQ0bPD7EFWHRVZ7SvpAG9dGIeJA4zorzdhTzrF7pRCSL0lu6FA8uJNUPsYt4TlegZPIhrfqgWPqnz8LxRezd7OJo8DEXfh7iMiXUo6EtkoPHnarTLgCo97uyYWUDoFucUpd8vOS3P0XU/jhwicrOS2OnhcXufRBi5ZZAEKcPzPN2bPNaS7Wv16kxP88n15C9UmoZE8Gl2kMU6gbzDoTPSJfkqsQKeb41+mP/Z9omDCJhFyHZutQ5dyUBw9CjwpHFkV8og=
