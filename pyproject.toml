@@ -1,16 +1,13 @@
 [tool.poetry]
 name = "opsgenie-logger"
 version = "0.1.4"
-description = "Provides logging handlers for OpsGenie"
+description = "Provides a logging handler for Atlassian OpsGenie"
 
 authors = ["Dylan Anthony <danthony@triaxtec.com>"]
 
 readme = "README.md"
 packages = [
     {include = "opsgenie_logger"},
-]
-classifiers = [
-    "Private :: Internal Triax Use Only"  # Prevents this from being accidentally published to public PyPI
 ]
 include = ["docs/CHANGELOG.md", "opsgenie_logger/py.typed"]
 
@@ -30,9 +27,6 @@ lockfile = "==0.*,>=0.12.2"
 mypy = "==0.*,>=0.720.0"
 black = {allows-prereleases = true, version = "*"}
 safety = "*"
-
-
-
 
 
 [tool.dephell]
