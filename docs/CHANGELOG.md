@@ -24,6 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Initial version
 
 
-[Unreleased]: https://bitbucket.org/triaxtechnologies/opsgenie-logger/branches/compare/develop%0Dmaster
-[0.1.1]: https://bitbucket.org/triaxtechnologies/opsgenie-logger/branches/compare/0.1.1%0D0.1.0
-[0.1.1]: https://bitbucket.org/triaxtechnologies/opsgenie-logger/branches/compare/0.1.2%0D0.1.1
+[Unreleased]: https://github.com/triaxtec/opsgenie-logger/compare/master...develop
+[0.1.4]: https://github.com/triaxtec/opsgenie-logger/releases/tag/v.0.1.4
+[0.1.3]: https://github.com/triaxtec/opsgenie-logger/releases/tag/v.0.1.3
+[0.1.2]: https://github.com/triaxtec/opsgenie-logger/releases/tag/v.0.1.2
+[0.1.1]: https://github.com/triaxtec/opsgenie-logger/releases/tag/v.0.1.1
+[0.1.0]: https://github.com/triaxtec/opsgenie-logger/releases/tag/v.0.1.0
