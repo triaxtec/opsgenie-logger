@@ -1,5 +1,6 @@
 # opsgenie-logger
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+[![Build Status](https://travis-ci.org/triaxtec/opsgenie-logger.svg?branch=develop)](https://travis-ci.org/triaxtec/opsgenie-logger)
 
 A Python logging handler for Atlassian OpsGenie.
 
