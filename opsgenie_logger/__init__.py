@@ -17,7 +17,7 @@ class OpsGenieHandler(logging.Handler):
     message: log message
     alias: path:function:lineno
     description: exception info (if any)
-    visible to: teamm name provided in __init__
+    visible to: team name provided in __init__
     priority: Critical, error and warning are P1-3.  All others are P5
     """
 
