@@ -12,14 +12,15 @@ jobs:
 before_install: |
   pip install poetry
   poetry config settings.virtualenvs.in-project true
-install: 'poetry install
-
-'
+install: 'poetry install'
+before_deploy:
+  - poetry config http-basic.pypi __token__ $PYPI_TOKEN
 deploy:
-  provider: pypi
-  edge: true
+  provider: script
+  script: poetry publish
   on:
     branch: master
-  username: triax
-  password:
-    secure: fKg0k8LT70Ia3YJu/UYeKMLCO5hTsINcxdBU7hsKzTLw4VocAQ/NmZvRVs3wElaGt0poRrChUtPJltFqDt43TKhjcotMglukTfIwR7M5kHwQrJq+be2E87VoShnQy9UsRnh2zLNsGwqPH5KfnymTEW8GFOdKShdurTGgBPp9vcmBOcq+Ni6aU2QtneqXosYJmdP4OJa12Mk4irCMe9IyoMiro8mQw2uZ7eLn/bFBo7bm9l/HSR6q8p7Uug8d+f7JNnPYDCIAvhxiFQCVSYG/f1mRkY1Fi5qp8wS443EgwfvW4UjDCqFyck1qXkkJrukubbOOFir83YJrhMbpO0QN5bXqCtPnaJnugPEy/fRfa5R53lAboLaWrqhSOjHoEGv11eDCFzt+37IfSCupzDmvMFoxKZmF6gfqvs8gHkWQ0bPD7EFWHRVZ7SvpAG9dGIeJA4zorzdhTzrF7pRCSL0lu6FA8uJNUPsYt4TlegZPIhrfqgWPqnz8LxRezd7OJo8DEXfh7iMiXUo6EtkoPHnarTLgCo97uyYWUDoFucUpd8vOS3P0XU/jhwicrOS2OnhcXufRBi5ZZAEKcPzPN2bPNaS7Wv16kxP88n15C9UmoZE8Gl2kMU6gbzDoTPSJfkqsQKeb41+mP/Z9omDCJhFyHZutQ5dyUBw9CjwpHFkV8og=
+
+env:
+  global:
+    secure: r7tJp2Vh/bnyKKlNMwgSsDVM3lYNGQW73cv40ZpklQ8GfU59suALcXbUIZM7twm8qv/Qi8LJe/6mSW7/I3st6W0Iej7HIW0/cx+Ky/Pb3LD4FDC/FXA2xKa+e9NwzdA3CD0PwYV5OkP2ng4mfzL+JsHya/T7uFAR2f3hLxk/6XoSXwxBKPM74pJNwwvi515ZQaJts2i5RkI5qTYKHbmSKVtzfbE0ZMP6doXf+ZxDZpc3EXCZGMyjECxfex+TuTcmO+HQgr1XZ7Zt8fB9fTXxtJLgPrazYkZBIVuNCmBqhy5YFNzFTUJEDuPLkZnljtE7zwyKRQQkAB02oO8x8HrHydxiIWyKliotK1yWbgi4DqHH5VkvvqLa1b+Kls+PkEnAy0E//Il9BOmA0TMXXTfUeMLAgFuuXh5x++9cVaNpSdUkJZWv0baIRdJMefjNc37Qtb43mB1IsDX9M1WrECpga2pf191SSPSuIUhQ9u7sBw1wZtNuG0sz0q8jmmNZqDgu6Db1hbkPVRNYvTq+NAFqaswOWTr5wv7UzE8Y25rD5TPCitDhJ0tPAAkSUDaOCzOX4oUgxwWPSyw0BVNLOcAlzDFcSZx7VWMlzW3ODma5b/zHfitAzuogwg2vCAjWLCwkTlcuwHi6r/YzDf6Abk/r2HsAdVOIbnZ7ona/HqwC7rU=
