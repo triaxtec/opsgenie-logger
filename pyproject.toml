@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "opsgenie-logger"
-version = "0.1.5"
+version = "0.1.6"
 description = "Provides a logging handler for Atlassian OpsGenie"
 repository = "https://github.com/triaxtec/opsgenie-logger"
 authors = ["Dylan Anthony <danthony@triaxtec.com>"]
@@ -14,7 +14,7 @@ keywords = ["opsgenie", "logging"]
 
 [tool.poetry.dependencies]
 python = "==3.*,>=3.7.0"
-opsgenie-sdk = "^2.0.1"
+requests = "^2.22.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
@@ -28,6 +28,7 @@ lockfile = "==0.*,>=0.12.2"
 mypy = "==0.*,>=0.720.0"
 black = {allows-prereleases = true, version = "*"}
 safety = "*"
+
 
 
 

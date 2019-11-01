@@ -1,12 +1,11 @@
 """ Provides logging handlers for OpsGenie """
 import logging
 from traceback import extract_tb, FrameSummary
-
 from typing import Union
 
-import opsgenie_sdk
+import requests
 
-__version__ = "0.1.5"
+__version__ = "0.1.6"
 
 
 class OpsGenieHandler(logging.Handler):
@@ -28,10 +27,7 @@ class OpsGenieHandler(logging.Handler):
         :param level: The minimum level a log event must be to be sent to OpsGenie
         """
         super().__init__(level=level)
-        conf = opsgenie_sdk.configuration.Configuration()
-        conf.api_key["Authorization"] = api_key
-        api_client = opsgenie_sdk.api_client.ApiClient(configuration=conf)
-        self._alert_api = opsgenie_sdk.AlertApi(api_client=api_client)
+        self._api_key = api_key
         self._team_name = team_name
         self._level_mapping = {
             logging.CRITICAL: "P1",
@@ -51,14 +47,16 @@ class OpsGenieHandler(logging.Handler):
             alias = f"{frame_summary.filename}:{frame_summary.name}:{frame_summary.lineno}"
         else:
             alias = f"{record.pathname}:{record.funcName}:{record.lineno}"
-        body = opsgenie_sdk.CreateAlertPayload(
-            message=record.getMessage(),
-            alias=alias,
-            description=self.format(record),
-            visible_to=[{"name": self._team_name, "type": "team"}],
-            priority=self._level_mapping[record.levelno],
-        )
+        body = {
+            "message": record.getMessage(),
+            "alias": alias,
+            "description": self.format(record),
+            "visible_to": [{"name": self._team_name, "type": "team"}],
+            "priority": self._level_mapping[record.levelno],
+        }
         try:
-            self._alert_api.create_alert(create_alert_payload=body)
-        except opsgenie_sdk.ApiException as err:
+            requests.post(
+                "https://api.opsgenie.com/v2/alerts", headers={"Authorization": f"GenieKey {self._api_key}"}, json=body,
+            )
+        except Exception as err:
             print(f"Exception when sending log to OpsGenie: {err}\n")
