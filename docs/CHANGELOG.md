@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.6] - 2019-11-01
+### Changed
+- Logger emit will now suppress all exceptions when sending data to OpsGenie API
+- Replaced opsgenie-sdk usage with requests
+
 ## [0.1.5] - 2019-10-17
 ### Added
 - MIT license and additional PyPI metadata (no functional changes)
@@ -29,6 +34,8 @@ Initial version
 
 
 [Unreleased]: https://github.com/triaxtec/opsgenie-logger/compare/master...develop
+[0.1.6]: https://github.com/triaxtec/opsgenie-logger/releases/tag/v.0.1.6
+[0.1.5]: https://github.com/triaxtec/opsgenie-logger/releases/tag/v.0.1.5
 [0.1.4]: https://github.com/triaxtec/opsgenie-logger/releases/tag/v.0.1.4
 [0.1.3]: https://github.com/triaxtec/opsgenie-logger/releases/tag/v.0.1.3
 [0.1.2]: https://github.com/triaxtec/opsgenie-logger/releases/tag/v.0.1.2
